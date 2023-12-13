@@ -1,6 +1,3 @@
-//import 'package:flutter/cupertino.dart';
-// ignore_for_file: non_constant_identifier_names, no_logic_in_create_state
-
 import 'package:chat_app/src/Sign_in.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +8,7 @@ import 'ThemeService.dart';
 
 class PersonInfo extends StatefulWidget {
   const PersonInfo(
-      {required this.user_name, required this.user_email, Key? key})
-      : super(key: key);
+      {required this.user_name, required this.user_email, super.key});
   final String user_name;
   final String user_email;
 
@@ -33,6 +29,7 @@ class _PersonInfo extends State<PersonInfo> {
   late String log_bet = "en";
   @override
   void initState() {
+    super.initState();
     ceckv();
   }
 
@@ -148,9 +145,9 @@ class _PersonInfo extends State<PersonInfo> {
                       setState(() {
                         log_bet = newValue.toString();
                       });
-                      SharedPreferences _prefService =
+                      SharedPreferences prefService =
                           await SharedPreferences.getInstance();
-                      _prefService.setString("locale", newValue);
+                      prefService.setString("locale", newValue);
                     },
                   )),
               ListTile(

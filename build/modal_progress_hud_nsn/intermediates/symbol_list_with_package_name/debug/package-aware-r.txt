@@ -1,4 +1,4 @@
-com.walle.modal_progress_hud_nsn
+boi.walle.modal_progress_hud_nsn
 attr activityAction
 attr activityName
 attr alpha

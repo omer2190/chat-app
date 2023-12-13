@@ -1,5 +1,3 @@
-// ignore_for_file: non_constant_identifier_names, no_logic_in_create_state
-
 import 'package:chat_app/widgets/showdialog.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -8,8 +6,7 @@ import 'package:get/get.dart';
 
 class NavigattionDrawer extends StatefulWidget {
   const NavigattionDrawer(
-      {required this.Room_id, required this.Uoser_email, Key? key})
-      : super(key: key);
+      {required this.Room_id, required this.Uoser_email, super.key});
 
   final String Room_id;
   final String Uoser_email;
@@ -20,8 +17,7 @@ class NavigattionDrawer extends StatefulWidget {
 }
 
 class _NavigattionDrawer extends State<NavigattionDrawer> {
-  _NavigattionDrawer(
-      {required this.Room_id, required this.Uoser_email, Key? key});
+  _NavigattionDrawer({required this.Room_id, required this.Uoser_email});
   late String Room_name = "";
   final String Room_id;
   late String Uoser_email = "";
@@ -32,6 +28,7 @@ class _NavigattionDrawer extends State<NavigattionDrawer> {
   final _firestore = FirebaseFirestore.instance;
   @override
   void initState() {
+    super.initState();
     getupdetinfo();
   }
 
@@ -54,7 +51,7 @@ class _NavigattionDrawer extends State<NavigattionDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance
+    final Stream<QuerySnapshot> usersStream = FirebaseFirestore.instance
         .collection('chat rooms')
         .doc(Room_id)
         .collection("uosrs_in_room")
@@ -116,80 +113,76 @@ class _NavigattionDrawer extends State<NavigattionDrawer> {
                             )
                           ],
                         ),
-                        Container(
-                          child: Card(
-                            child: ListTile(
-                              enabled: Uoser_email == Room_master.toString(),
-                              title: Row(
-                                children: [
-                                  const Icon(Icons.lock),
-                                  const SizedBox(
-                                    width: 2,
-                                  ),
-                                  Text("lock_room".tr),
-                                ],
-                              ),
-                              trailing:
-                                  Room_lock ? Text("lock".tr) : Text("open".tr),
-                              onTap: () {
-                                showdialog1(context, Room_master, Uoser_email,
-                                    Room_id, Room_pass);
-                              },
+                        Card(
+                          child: ListTile(
+                            enabled: Uoser_email == Room_master.toString(),
+                            title: Row(
+                              children: [
+                                const Icon(Icons.lock),
+                                const SizedBox(
+                                  width: 2,
+                                ),
+                                Text("lock_room".tr),
+                              ],
                             ),
+                            trailing:
+                                Room_lock ? Text("lock".tr) : Text("open".tr),
+                            onTap: () {
+                              showdialog1(context, Room_master, Uoser_email,
+                                  Room_id, Room_pass);
+                            },
                           ),
                         ),
                       ],
                     ),
                   ),
-                  Container(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 12),
-                          child: Text(
-                            "members".tr,
-                            style: const TextStyle(fontSize: 24),
-                            softWrap: true,
-                          ),
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 12),
+                        child: Text(
+                          "members".tr,
+                          style: const TextStyle(fontSize: 24),
+                          softWrap: true,
                         ),
-                        Padding(
-                            padding: const EdgeInsets.symmetric(horizontal: 5),
-                            child: StreamBuilder(
-                              stream: _usersStream,
-                              builder: (BuildContext context,
-                                  AsyncSnapshot<QuerySnapshot> snapshot) {
-                                if (snapshot.hasError) {
-                                  return Text('Something went wrong'.tr);
-                                }
+                      ),
+                      Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 5),
+                          child: StreamBuilder(
+                            stream: usersStream,
+                            builder: (BuildContext context,
+                                AsyncSnapshot<QuerySnapshot> snapshot) {
+                              if (snapshot.hasError) {
+                                return Text('Something went wrong'.tr);
+                              }
 
-                                if (snapshot.connectionState ==
-                                    ConnectionState.waiting) {
-                                  return Center(child: Text("Loading".tr));
-                                }
-                                return Column(
-                                  children: snapshot.data!.docs
-                                      .map((DocumentSnapshot document) {
-                                    Map<String, dynamic> data = document.data()!
-                                        as Map<String, dynamic>;
-                                    return Card(
-                                        child: ListTile(
-                                      title: Text(
-                                        data["name"].toString(),
-                                        style: const TextStyle(fontSize: 24),
-                                      ),
-                                      // subtitle: Text(
-                                      //     "ID : " + document.id.toString()),
-                                      onTap: () {
-                                        // print(data["name"]);
-                                      },
-                                    ));
-                                  }).toList(),
-                                );
-                              },
-                            ))
-                      ],
-                    ),
+                              if (snapshot.connectionState ==
+                                  ConnectionState.waiting) {
+                                return Center(child: Text("Loading".tr));
+                              }
+                              return Column(
+                                children: snapshot.data!.docs
+                                    .map((DocumentSnapshot document) {
+                                  Map<String, dynamic> data =
+                                      document.data()! as Map<String, dynamic>;
+                                  return Card(
+                                      child: ListTile(
+                                    title: Text(
+                                      data["name"].toString(),
+                                      style: const TextStyle(fontSize: 24),
+                                    ),
+                                    // subtitle: Text(
+                                    //     "ID : " + document.id.toString()),
+                                    onTap: () {
+                                      // print(data["name"]);
+                                    },
+                                  ));
+                                }).toList(),
+                              );
+                            },
+                          ))
+                    ],
                   ),
                 ]),
           ),

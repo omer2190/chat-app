@@ -1,7 +1,7 @@
 // ignore: file_names
 // ignore_for_file: unused_import, file_names, duplicate_ignore
 
-import 'package:chat_app/src/Sign_in.dart';
+import 'package:chat_app/src/sign_in.dart';
 import 'package:chat_app/src/chet_room.dart';
 import 'package:chat_app/src/home.dart';
 import 'package:chat_app/widgets/My_Butten.dart';
@@ -13,7 +13,7 @@ import 'package:get/get.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 
 class Register extends StatefulWidget {
-  const Register({Key? key}) : super(key: key);
+  const Register({super.key});
 
   @override
   State<Register> createState() => _RegisterState();
@@ -55,168 +55,152 @@ class _RegisterState extends State<Register> {
                 const SizedBox(
                   height: 50,
                 ),
-                Container(
-                    child: TextFormField(
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          email = value;
-                        },
-                        validator: (Value) {
-                          if (Value!.length < 4) {
-                            return "Enter_the_Email_correctlyy".tr;
-                          }
-                          return null;
-                        },
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.emailAddress,
-                        decoration: InputDecoration(
-                          hintText: "Enter_Your_Email".tr,
-                          prefixIcon: const Icon(Icons.email),
-                          border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(width: 1),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(width: 2),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                        ))),
+                TextFormField(
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {
+                      email = value;
+                    },
+                    validator: (Value) {
+                      if (Value!.length < 4) {
+                        return "Enter_the_Email_correctlyy".tr;
+                      }
+                      return null;
+                    },
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.emailAddress,
+                    decoration: InputDecoration(
+                      hintText: "Enter_Your_Email".tr,
+                      prefixIcon: const Icon(Icons.email),
+                      border: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 1),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 2),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                    )),
                 const SizedBox(
                   height: 10,
                 ),
-                Container(
-                    child: TextFormField(
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          name = value;
-                        },
-                        validator: (Value) {
-                          if (Value!.isEmpty) {
-                            return "Input_Your_Name".tr;
-                          }
-                          return null;
-                        },
-                        textInputAction: TextInputAction.next,
-                        keyboardType: TextInputType.name,
-                        decoration: InputDecoration(
-                          hintText: "Input_Your_Name".tr,
-                          prefixIcon: const Icon(Icons.person),
-                          border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(width: 1),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(width: 2),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                        ))),
+                TextFormField(
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {
+                      name = value;
+                    },
+                    validator: (Value) {
+                      if (Value!.isEmpty) {
+                        return "Input_Your_Name".tr;
+                      }
+                      return null;
+                    },
+                    textInputAction: TextInputAction.next,
+                    keyboardType: TextInputType.name,
+                    decoration: InputDecoration(
+                      hintText: "Input_Your_Name".tr,
+                      prefixIcon: const Icon(Icons.person),
+                      border: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 1),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 2),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                    )),
                 const SizedBox(
                   height: 10,
                 ),
-                Container(
-                    child: TextFormField(
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          pass = value;
-                        },
-                        validator: (Value) {
-                          if (Value!.length < 6) {
-                            return "Enter_at_least_6_character".tr;
-                          }
-                          return null;
-                        },
-                        obscureText: isvspass,
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration: InputDecoration(
-                          hintText: "Enter Your Password".tr,
-                          prefixIcon: const Icon(Icons.visibility),
-                          border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(width: 1),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(width: 2),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          suffixIcon: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  isvspass = !isvspass;
-                                });
-                              },
-                              child: isvspass
-                                  ? const Icon(
-                                      Icons.visibility,
-                                      color: Colors.blue,
-                                    )
-                                  : const Icon(
-                                      Icons.visibility_off,
-                                      color: Colors.blue,
-                                    )),
-                        ))),
+                TextFormField(
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {
+                      pass = value;
+                    },
+                    validator: (Value) {
+                      if (Value!.length < 6) {
+                        return "Enter_at_least_6_character".tr;
+                      }
+                      return null;
+                    },
+                    obscureText: isvspass,
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.visiblePassword,
+                    decoration: InputDecoration(
+                      hintText: "Enter Your Password".tr,
+                      prefixIcon: const Icon(Icons.visibility),
+                      border: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 1),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 2),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      suffixIcon: InkWell(
+                          onTap: () {
+                            setState(() {
+                              isvspass = !isvspass;
+                            });
+                          },
+                          child: isvspass
+                              ? const Icon(
+                                  Icons.visibility,
+                                  color: Colors.blue,
+                                )
+                              : const Icon(
+                                  Icons.visibility_off,
+                                  color: Colors.blue,
+                                )),
+                    )),
                 const SizedBox(
                   height: 10,
                 ),
-                Container(
-                    child: TextFormField(
-                        textAlign: TextAlign.center,
-                        onChanged: (value) {
-                          pass2 = value;
-                        },
-                        validator: (Value) {
-                          if (Value!.length < 6) {
-                            return "Enter_at_least_6_character".tr;
-                          } else {
-                            if (pass2 == pass) {
-                              return null;
-                            } else {
-                              return "password_does_not_match".tr;
-                            }
-                          }
-                        },
-                        obscureText: isvspass,
-                        textInputAction: TextInputAction.done,
-                        keyboardType: TextInputType.visiblePassword,
-                        decoration: InputDecoration(
-                          hintText: "Confer_Your_password".tr,
-                          prefixIcon: const Icon(Icons.visibility),
-                          border: const OutlineInputBorder(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          enabledBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(width: 1),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          focusedBorder: const OutlineInputBorder(
-                              borderSide: BorderSide(width: 2),
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(10))),
-                          suffixIcon: InkWell(
-                              onTap: () {
-                                setState(() {
-                                  isvspass = !isvspass;
-                                });
-                              },
-                              child: isvspass
-                                  ? const Icon(
-                                      Icons.visibility,
-                                      color: Colors.blue,
-                                    )
-                                  : const Icon(
-                                      Icons.visibility_off,
-                                      color: Colors.blue,
-                                    )),
-                        ))),
+                TextFormField(
+                    textAlign: TextAlign.center,
+                    onChanged: (value) {
+                      pass2 = value;
+                    },
+                    validator: (Value) {
+                      if (Value!.length < 6) {
+                        return "Enter_at_least_6_character".tr;
+                      } else {
+                        if (pass2 == pass) {
+                          return null;
+                        } else {
+                          return "password_does_not_match".tr;
+                        }
+                      }
+                    },
+                    obscureText: isvspass,
+                    textInputAction: TextInputAction.done,
+                    keyboardType: TextInputType.visiblePassword,
+                    decoration: InputDecoration(
+                      hintText: "Confer_Your_password".tr,
+                      prefixIcon: const Icon(Icons.visibility),
+                      border: const OutlineInputBorder(
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      enabledBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 1),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      focusedBorder: const OutlineInputBorder(
+                          borderSide: BorderSide(width: 2),
+                          borderRadius: BorderRadius.all(Radius.circular(10))),
+                      suffixIcon: InkWell(
+                          onTap: () {
+                            setState(() {
+                              isvspass = !isvspass;
+                            });
+                          },
+                          child: isvspass
+                              ? const Icon(
+                                  Icons.visibility,
+                                  color: Colors.blue,
+                                )
+                              : const Icon(
+                                  Icons.visibility_off,
+                                  color: Colors.blue,
+                                )),
+                    )),
                 MyButten(
                     color: Colors.blue,
                     tetel: "Register".tr,

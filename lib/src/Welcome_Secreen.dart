@@ -1,5 +1,3 @@
-import 'dart:ffi';
-
 import 'package:chat_app/src/Register.dart';
 import 'package:chat_app/src/Sign_in.dart';
 import 'package:flutter/material.dart';
@@ -24,8 +22,8 @@ class WelcomeSecreenState extends State<WelcomeSecreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              Column(
-                children: const [
+              const Column(
+                children: [
                   FlutterLogo(
                     size: 160,
                   ),
@@ -42,7 +40,6 @@ class WelcomeSecreenState extends State<WelcomeSecreen> {
                 tetel: "Sign in",
                 color: Colors.blue[900]!,
                 onPrees: () {
-                  print("object");
                   Navigator.push<void>(
                     context,
                     MaterialPageRoute<void>(

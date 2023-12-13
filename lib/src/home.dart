@@ -7,10 +7,10 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'Person_Info.dart';
+import 'person_Info.dart';
 
 class Home extends StatefulWidget {
-  const Home({Key? key}) : super(key: key);
+  const Home({super.key});
 
   @override
   State<Home> createState() => _HomeState();
@@ -42,7 +42,7 @@ class _HomeState extends State<Home> {
     SharedPreferences share = await SharedPreferences.getInstance();
     String locl = share.getString("locale").toString();
     if (locl == null) {
-      Get.updateLocale(Locale("ar"));
+      Get.updateLocale(const Locale("ar"));
     } else {
       await Get.updateLocale(Locale(locl.toString().toLowerCase()));
     }
@@ -53,11 +53,8 @@ class _HomeState extends State<Home> {
       final user = _auth.currentUser;
       if (user != null) {
         _user = user;
-        print(_user.email);
       }
-    } catch (e) {
-      print(e);
-    }
+    } catch (e) {}
   }
 
   @override
@@ -206,8 +203,6 @@ class delegate extends SearchDelegate {
   void getroom() async {
     final rooms = await _firestore.collection("chat rooms").get();
     for (var room in rooms.docs) {
-      print(room.id);
-
       searcch.add(room.id);
     }
   }
@@ -319,6 +314,7 @@ class delegate extends SearchDelegate {
                     return "password_is_not_true".tr;
                   }
                 }
+                // return null;
               },
             ),
             actionsAlignment: MainAxisAlignment.start,

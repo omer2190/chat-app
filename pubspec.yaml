@@ -48,6 +48,7 @@ dependencies:
   firebase_storage: ^11.5.2
   # google_sign_in: ^5.4.0
   # flutter_facebook_auth: ^4.4.0
+  flutter_plugin_android_lifecycle: ^2.0.17
 
 dev_dependencies:
   flutter_test:

@@ -1,23 +1,17 @@
-// ignore_for_file: non_constant_identifier_names, no_logic_in_create_state
-
-// import 'dart:html';
-
 import 'package:chat_app/src/MyColors.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_connect/http/src/_http/_html/_file_decoder_html.dart';
 import 'package:image_picker/image_picker.dart';
 
-import '../widgets/Navigattion_Drawer.dart';
-import '../widgets/Notificatcaions.dart';
+import '../widgets/navigattion_drawer.dart';
+import '../widgets/notificatcaions.dart';
 import 'dart:io' as prefix;
 
 class ChatRoom extends StatefulWidget {
-  ChatRoom({required this.Room_id, required this.Room_name, Key? key})
-      : super(key: key);
+  ChatRoom({required this.Room_id, required this.Room_name, super.key});
   String Room_id;
   String Room_name;
 
@@ -26,7 +20,7 @@ class ChatRoom extends StatefulWidget {
 }
 
 class _ChatRoomState extends State<ChatRoom> {
-  _ChatRoomState({required this.Room_id, Key? key});
+  _ChatRoomState({required this.Room_id});
   String Room_id;
   String? Room_name;
   late String? Room_master = "";
@@ -139,7 +133,7 @@ class _ChatRoomState extends State<ChatRoom> {
                 );
               }),
           Container(
-            margin: EdgeInsets.all(10),
+            margin: const EdgeInsets.all(10),
             decoration: BoxDecoration(
                 color: ccolors().getCard(),
                 borderRadius: BorderRadius.circular(50),
@@ -155,7 +149,7 @@ class _ChatRoomState extends State<ChatRoom> {
                     onPressed: () => pickImag(), icon: const Icon(Icons.image)),
                 Expanded(
                     child: Container(
-                  margin: EdgeInsets.all(5),
+                  margin: const EdgeInsets.all(5),
                   decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(50),
                     color: ccolors().getBodyBrone(),
@@ -185,7 +179,6 @@ class _ChatRoomState extends State<ChatRoom> {
                     if (massControlr.text != "" &&
                         massControlr.text != " " &&
                         massControlr.text != null) {
-                      print(massControlr.text);
                       SendMass(null);
                       massControlr.clear();
                       mass == null;
@@ -219,16 +212,14 @@ class _ChatRoomState extends State<ChatRoom> {
 
   pickImag() async {
     var image = await ImagePicker().pickImage(source: ImageSource.gallery);
-    final ref = FirebaseStorage.instance
-        .ref()
-        .child("File/$Room_id/" + image!.name.toString());
+    final ref =
+        FirebaseStorage.instance.ref().child("File/$Room_id/${image!.name}");
     // ref.putFile(pic);
     await ref.putFile(prefix.File(image.path)).then(
       (p0) async {
         //print(p0);
         //print(await ref.getDownloadURL());
         uir = await ref.getDownloadURL();
-        print(uir);
         SendMass(uir);
       },
     );
@@ -241,9 +232,8 @@ class massgeLine extends StatelessWidget {
       this.massge,
       this.user_name,
       required this.isMe,
-      Key? key,
-      this.ImageUir})
-      : super(key: key);
+      super.key,
+      this.ImageUir});
 
   final String? name_id;
   final String? massge;
@@ -302,9 +292,9 @@ class massgeLine extends StatelessWidget {
                                         : null,
                                   ),
                                   Container(
-                                      margin:
-                                          EdgeInsets.symmetric(horizontal: 25),
-                                      child: Text("data"))
+                                      margin: const EdgeInsets.symmetric(
+                                          horizontal: 25),
+                                      child: const Text("data"))
                                 ],
                               )),
                           Container(
